@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../dummyData";
 import postPlaceholder from "../../assets/post/2.jpeg";
 import userPlaceholder from "../../assets/person/4.jpeg";
 import heartPic from "../../assets/heart.png";
 import likePic from "../../assets/like.png";
+import { Users } from "../../dummyData";
 
 // Define the Post type here
 interface Post {
   id: number;
   userId: number;
-  photo: string;
-  date: string;
-  like: number;
+  photo?: string;
+  date: Date;
+  likes: string[];
   comment: number;
   desc?: string;
 }
@@ -22,19 +22,20 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  const [like, setLike] = useState(post.like);
+  const [likeCount, setLikeCount] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   console.log(post);
 
   const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
+    setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
     setIsLiked(!isLiked);
   };
 
+  // Assuming Users is fetched and has consistent user data
   const user = Users.find((u) => u.id === post.userId);
 
   return (
-    <div className="max-w-3xl mx-auto rounded-lg shadow-lg my-8 p-4 bg-white ">
+    <div className="max-w-3xl mx-auto rounded-lg shadow-lg my-8 p-4 bg-white">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <img
@@ -44,7 +45,9 @@ const Post: React.FC<PostProps> = ({ post }) => {
           />
           <div>
             <span className="font-semibold">{user?.username}</span>
-            <span className="text-gray-500 text-sm ml-2">{post.date}</span>
+            <span className="text-gray-500 text-sm ml-2">
+              {new Date(post.date).toLocaleDateString()}
+            </span>
           </div>
         </div>
         <MoreVert />
@@ -71,7 +74,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
             onClick={likeHandler}
             alt="Heart"
           />
-          <span className="text-gray-700">{like} people like it</span>
+          <span className="text-gray-700">{likeCount} people like it</span>
         </div>
         <span className="text-gray-500 cursor-pointer">
           {post.comment} comments
