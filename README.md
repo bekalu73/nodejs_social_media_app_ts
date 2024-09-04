@@ -12,19 +12,30 @@ This is a social media application built with Node.js and TypeScript on the back
 
 ### Backend
 
-- **controllers**: Contains the logic for handling HTTP requests.
-- **routes**: Defines API endpoints.
-- **models**: Contains Mongoose models for database schemas.
-- **types**: TypeScript types and interfaces.
+Located in the `backend/` directory:
+
+- `dist/`: Compiled JavaScript files.
+- `node_modules/`: Project dependencies.
+- `package.json`: Backend package configuration.
+- `package-lock.json`: Exact versions of installed dependencies.
+- `src/`: Source code, including controllers, models, routes, and types.
+- `tsconfig.json`: TypeScript configuration.
 
 ### Frontend
 
-- **src**: Contains the React app code.
-  - **components**: Reusable React components.
-  - **features**: Redux slices and sagas.
-  - **pages**: Different pages of the app.
-  - **store**: Redux store configuration.
-  - **types**: TypeScript types and interfaces.
+Located in the `frontend/src/` directory:
+
+- `App.tsx`: Entry point for the React app.
+- `assets/`: Static assets like images and fonts.
+- `component/`: Reusable React components.
+- `context/`: React context for global state management.
+- `dummyData.ts`: Dummy data for testing user information.
+- `index.css`: Global styles.
+- `main.tsx`: The main entry file for rendering the React app.
+- `pages/`: Different pages of the app.
+- `router.ts`: Route configuration for the app.
+- `types/`: TypeScript types and interfaces.
+- `vite-env.d.ts`: Vite environment definitions.
 
 ## Getting Started
 
